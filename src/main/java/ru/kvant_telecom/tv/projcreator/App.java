@@ -19,9 +19,6 @@ import java.nio.file.Paths;
 public class App
 {
 
-    //## README
-    // set Artifact jar output path to "projcreator/out/projcreator_data"
-
     private static final String PROG_DIR = "/usr/local/bin/projcreator_data";
 
     private static final String SEP = File.separator;
