@@ -2,6 +2,7 @@ package ru.kvant_telecom.tv.projcreator;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -23,6 +24,8 @@ public class App
 
     private static final String PROG_DIR = "/usr/local/bin/projcreator_data";
 
+    private static final String SEP = File.separator;
+
     private BufferedReader bufferIn;
 
     private String groupId;
@@ -38,7 +41,7 @@ public class App
     public static void main( String[] args ) throws IOException {
 
         if (args.length == 0 ||
-            args[0] .equals("simple")) {
+            args[0].equals("simple")) {
 
             new App().processSimple();
         }
@@ -54,24 +57,7 @@ public class App
 
     private void processSimple() throws IOException {
 
-        //Path path = Paths.get(MethodHandles.lookup().lookupClass().getProtectionDomain().getCodeSource().getLocation().getPath());
-
-        //System.out.println(path);
-
         workingDir = System.getProperty("user.dir");
-
-        //System.out.println(System.getProperty("java.class.path"));
-
-
-
-
-        // DEBUGGING
-//        groupId = "ru.kvant_telecom.tv";
-//        artifactId = "superapp";
-
-//        workingDir = "/home/khatuncev/coding/java/projcreator/test";
-        
-
 
         System.out.print("group.id: ");
         groupId = readLine();
@@ -83,28 +69,27 @@ public class App
         if( isNullOrEmpty(groupId))
             throw new RuntimeException("Bad artifact.id value");
 
-
+        // filtering some special chars
         groupId = groupId.replaceAll("-", "_");
-        artifactId = artifactId.replaceAll("\\.", "");
-        groupId = groupId.replaceAll("/", "");
-        artifactId = artifactId.replaceAll("/", "");
-
+        artifactId = artifactId.replaceAll("-", "_");
+        groupId = groupId.replaceAll("[/|\\\\]", "");
+        artifactId = artifactId.replaceAll("[/|\\\\]", "");
         packageName = groupId + "." + artifactId;
 
 
-        sources = workingDir + "."+ artifactId + ".src" + ".main" + ".java" + "." + groupId + "." + artifactId;
-        test = workingDir + "." + artifactId + ".src" + ".test" + ".java" + "." + groupId;
-        resources = workingDir + "." + artifactId + ".src" + ".main" + ".resources" + ".META-INF";
+        String sourcesPart = ".src" + ".main" + ".java" + "." + groupId + "." + artifactId;
+        String testPart = ".src" + ".test" + ".java" + "." + groupId;
+        String resourcesPart = ".src" + ".main" + ".resources" + ".META-INF";
 
-        sources = sources.replaceAll("\\.", "/");
-        test = test.replaceAll("\\.", "/");
-        resources = resources.replaceAll("\\.", "/");
+        sources = workingDir + File.separator + artifactId + sourcesPart.replaceAll("\\.", File.separator);
+        test = workingDir + File.separator + artifactId + testPart.replaceAll("\\.", File.separator);
+        resources = workingDir + File.separator + artifactId + resourcesPart.replaceAll("\\.", File.separator);
 
         fileIO();
         createPom();
         createApp();
 
-        System.out.println("Simple app project created");
+        System.out.println("Simple app project created.");
     }
 
 
@@ -128,8 +113,8 @@ public class App
     private void createPom() throws IOException {
 
 
-        Path pathIn = Paths.get(PROG_DIR + "/pom.xml");
-        Path pathOut = Paths.get(workingDir + "/" + artifactId + "/pom.xml");
+        Path pathIn = Paths.get(PROG_DIR + SEP + "pom.xml");
+        Path pathOut = Paths.get(workingDir + SEP + artifactId + SEP +"pom.xml");
 
         String content = new String(Files.readAllBytes(pathIn), StandardCharsets.UTF_8);
 
@@ -146,8 +131,8 @@ public class App
     private void createApp() throws IOException {
 
 
-        Path pathIn = Paths.get(PROG_DIR + "/App.java");
-        Path pathOut = Paths.get(sources + "/App.java");
+        Path pathIn = Paths.get(PROG_DIR + SEP +"App.java");
+        Path pathOut = Paths.get(sources + SEP +"App.java");
 
         String content = new String(Files.readAllBytes(pathIn), StandardCharsets.UTF_8);
 

@@ -1,4 +1,4 @@
-package ru.kvant_telecom.tv.superapp;
+package ru.home;
 
 /**
  * Hello world!
@@ -7,7 +7,7 @@ package ru.kvant_telecom.tv.superapp;
 public class App
 {
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
 
         new App();
     }
