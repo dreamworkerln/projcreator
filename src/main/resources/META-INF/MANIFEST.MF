@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: ru.kvant_telecom.tv.projcreator.App
+Main-Class: ru.home.projcreator.App
 

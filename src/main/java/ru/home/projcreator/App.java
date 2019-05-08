@@ -1,4 +1,4 @@
-package ru.kvant_telecom.tv.projcreator;
+package ru.home.projcreator;
 
 
 import java.io.BufferedReader;
