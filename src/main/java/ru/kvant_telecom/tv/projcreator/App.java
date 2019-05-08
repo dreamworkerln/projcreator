@@ -18,6 +18,11 @@ import java.nio.file.Paths;
 public class App
 {
 
+    //## README
+    // set Artifact jar output path to "projcreator/out/projcreator_data"
+
+    private static final String PROG_DIR = "/usr/local/bin/projcreator_data";
+
     private BufferedReader bufferIn;
 
     private String groupId;
@@ -123,7 +128,7 @@ public class App
     private void createPom() throws IOException {
 
 
-        Path pathIn = Paths.get("/usr/local/bin/projcreator_data/pom.xml");
+        Path pathIn = Paths.get(PROG_DIR + "/pom.xml");
         Path pathOut = Paths.get(workingDir + "/" + artifactId + "/pom.xml");
 
         String content = new String(Files.readAllBytes(pathIn), StandardCharsets.UTF_8);
@@ -141,7 +146,7 @@ public class App
     private void createApp() throws IOException {
 
 
-        Path pathIn = Paths.get("/usr/local/bin/projcreator_data/App.java");
+        Path pathIn = Paths.get(PROG_DIR + "/App.java");
         Path pathOut = Paths.get(sources + "/App.java");
 
         String content = new String(Files.readAllBytes(pathIn), StandardCharsets.UTF_8);
@@ -161,7 +166,7 @@ public class App
 
         String result = null;
         try {
-            result=  bufferIn.readLine();
+            result = bufferIn.readLine();
         }
         catch (IOException ignore) {}
         return result;
