@@ -1,7 +1,7 @@
 # projcreator
 Crutches implementation of custom maven archetype.
 
-Maded for Ubuntu.
+Made for Ubuntu.
 
 Set in File->Project Structure->Artifact (add jar with dep) output directory to "projcreator/out/projcreator_data"
 After building project run deploy.sh
