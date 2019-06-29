@@ -22,7 +22,16 @@ projcreator/out/projcreator_data/projcreator.jar
 
 2. After building jar run projcreator/deploy.sh
 
-(On Windows copy projcreator/out/* contents to windows/system32/
+(On Windows 
+Change in code 
+ 
+private static final String PROG_DIR = "/usr/local/bin/projcreator_data";
+to
+private static final String PROG_DIR = "c:/windows/system32/projcreator_data";
+
+rebuild jar
+
+copy projcreator/out/* contents to windows/system32/
 and replace projcreator from bash to projcreator.bat script and edit it
 like 
 java -jar C:/windows/system32/projcreator_data/projcreator.jar

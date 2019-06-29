@@ -37,6 +37,7 @@ public class App
 
     public static void main( String[] args ) throws IOException {
 
+        //ToDo: implement new types of archetypes (create folders in projcreator_data)
         if (args.length == 0 ||
             args[0].equals("simple")) {
 
@@ -59,12 +60,12 @@ public class App
         System.out.print("group.id: ");
         groupId = readLine();
         if( isNullOrEmpty(groupId))
-            throw new RuntimeException("Bad group.id value");
+            throw new IllegalArgumentException("\nBad group.id value");
 
         System.out.print("artifact.id: ");
         artifactId = readLine();
         if( isNullOrEmpty(groupId))
-            throw new RuntimeException("Bad artifact.id value");
+            throw new IllegalArgumentException("\nBad artifact.id value");
 
         // filtering some special chars
         groupId = groupId.replaceAll("-", "_");
@@ -72,6 +73,11 @@ public class App
         groupId = groupId.replaceAll("[/|\\\\]", "");
         artifactId = artifactId.replaceAll("[/|\\\\]", "");
         packageName = groupId + "." + artifactId;
+
+        // Already have same name directory in workingDir - aborting
+        if (Files.exists(Paths.get(workingDir + File.separator + artifactId))) {
+            throw new IllegalArgumentException("\nDirectory " + artifactId + " already exists, aborting");
+        }
 
 
         String sourcesPart = ".src" + ".main" + ".java" + "." + groupId + "." + artifactId;
