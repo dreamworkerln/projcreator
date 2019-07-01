@@ -1,0 +1,1 @@
+java -jar <you_full_path>/projcreator/out/projcreator_data/projcreator.jar

@@ -22,21 +22,24 @@ projcreator/out/projcreator_data/projcreator.jar
 
 2. After building jar run projcreator/deploy.sh
 
-(On Windows 
+(
+On Windows 
 Change in code 
  
 private static final String PROG_DIR = "/usr/local/bin/projcreator_data";
 to
-private static final String PROG_DIR = "c:/windows/system32/projcreator_data";
+private static final String PROG_DIR = "<you_full_path>/projcreator/out/projcreator_data";
 
 rebuild jar
 
-copy projcreator/out/* contents to windows/system32/
-and replace projcreator from bash to projcreator.bat script and edit it
+Edit projcreator/out/projcreator.bat script
 like 
-java -jar C:/windows/system32/projcreator_data/projcreator.jar
+java -jar <you_full_path>/projcreator/out/projcreator_data/projcreator.jar
+(fix to you real full path)
 
-Not tested)
+Then add to windows system path <you_full_path>/projcreator/out/projcreator_data/ 
+(Environment Variables -> Path)
+)
 
 Usage:
 In terminal run projcreator then enter group.id and artifact.id
