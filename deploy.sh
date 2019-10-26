@@ -1,5 +1,5 @@
 #!/bin/bash
-CURRUSER=$(who | awk '{print $1}')
+CURRUSER=$(whoami | awk '{print $1}')
 
 rsync -avz out/ /usr/local/bin/
 #chmod ug+x /usr/local/bin/projcreator

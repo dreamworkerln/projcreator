@@ -30,8 +30,10 @@ public class App
     private String packageName;
 
     private String sources;
-    private String test;
     private String resources;
+    private String test;
+    private String testResources;
+
 
     private String workingDir;
 
@@ -81,12 +83,14 @@ public class App
 
 
         String sourcesPart = ".src" + ".main" + ".java" + "." + groupId + "." + artifactId;
-        String testPart = ".src" + ".test" + ".java" + "." + groupId;
         String resourcesPart = ".src" + ".main" + ".resources" + ".META-INF";
+        String testPart = ".src" + ".test" + ".java" + "." + groupId;
+        String testResourcesPart = ".src" + ".test" + ".resources"/* + ".META-INF"*/;
 
         sources = workingDir + File.separator + artifactId + sourcesPart.replaceAll("\\.", File.separator);
-        test = workingDir + File.separator + artifactId + testPart.replaceAll("\\.", File.separator);
         resources = workingDir + File.separator + artifactId + resourcesPart.replaceAll("\\.", File.separator);
+        test = workingDir + File.separator + artifactId + testPart.replaceAll("\\.", File.separator);
+        testResources = workingDir + File.separator + artifactId + testResourcesPart.replaceAll("\\.", File.separator);
 
         fileIO();
         createPom();
@@ -106,9 +110,9 @@ public class App
         //Files.createDirectory(workingPath);
 
         Files.createDirectories(Paths.get(sources));
-        Files.createDirectories(Paths.get(test));
         Files.createDirectories(Paths.get(resources));
-
+        Files.createDirectories(Paths.get(test));
+        Files.createDirectories(Paths.get(testResources));
     }
 
 

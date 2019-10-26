@@ -20,7 +20,7 @@ projcreator/out/projcreator_data/projcreator.jar
 
 
 
-2. After building jar run projcreator/deploy.sh
+2. After building jar run sudo projcreator/deploy.sh
 
 (
 On Windows 
